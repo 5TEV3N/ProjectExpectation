@@ -6,15 +6,35 @@ public class PlayerController : MonoBehaviour
     public float mouseSensitivity = 1;    //mouse sensitivity
     public float playerSpeed = 1;  //We can controll the speed of the player here.
     public Rigidbody rb;
-    public Camera cam;  //A reference to the attached camera ! be sure to actually but the camera object from the scene into the script @ the inspector window
-    
+
+    void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     public void Mouselook(float mouseXAxis, float mouseYAxis)
     {
-        // rotate the player charecter on the y axis to look left or right. This is done so that you dont fuck up the camera up
-        transform.Rotate(0, mouseXAxis * mouseSensitivity, 0);
-        // rotate the camera on the x axis to look up and down.
-        //cam.transform.Rotate(-mouseYAxis * mouseSensitivity, 0, 0);
-    }
+        //Filter vertical input
+        if (mouseXAxis != 0)
+        {
+            gameObject.transform.Rotate(new Vector3(0, mouseXAxis, 0));
+        }
+
+        //Filter horizontal input
+        if (mouseYAxis != 0)
+        {
+            gameObject.transform.Rotate(new Vector3(-mouseYAxis, 0, 0));
+        }
+
+        if (gameObject.transform.localRotation.z != 0)
+        {
+            //localEulerAngles = Actual angle objet is rotated to in local space
+            Vector3 myVec = gameObject.transform.localEulerAngles;
+            gameObject.transform.localEulerAngles = new Vector3(myVec.x, myVec.y, 0);
+        }
+        
+        }
 
     public void PlayerMove(float xAxis, float zAxis)
     {
