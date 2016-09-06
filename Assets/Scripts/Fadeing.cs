@@ -9,18 +9,15 @@ public class Fadeing : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();   
     }
-    
-    void Update()
+
+    public void fadeUp()
     {
-        fadeText();
+        animator.SetBool("upKeyPressed", true);
     }
 
-    public void fadeText()
+    public void fadeDelete()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            animator.SetBool("upKeyPressed", true);
-        }
+        animator.SetBool("deleteKeyPressed", true);
     }
 
 }

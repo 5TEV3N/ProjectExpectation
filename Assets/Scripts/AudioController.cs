@@ -7,13 +7,11 @@ public class AudioController : MonoBehaviour
 
     void Awake()
     {
-        playDing();
+        mySource = gameObject.GetComponent<AudioSource>(); //AudioSource.FindObjectOfType<AudioSource>();
     }
 
     public void playDing()
     {
-        mySource = gameObject.GetComponent<AudioSource>(); //AudioSource.FindObjectOfType<AudioSource>();
-        //mySource.clip = Instantiate(Resources.Load("196106__aiwha__ding")) as AudioClip;
         mySource.Play();
     }
 }
