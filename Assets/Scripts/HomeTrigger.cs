@@ -12,18 +12,31 @@ public class HomeTrigger : MonoBehaviour
     public GameObject hiddenClue4;
     public GameObject hiddenClue5;
 
+    Fadeing fadeing;
+    AudioController audioController;
+
+    void Awake()
+    {
+        fadeing = GameObject.FindGameObjectWithTag("T_Fade").GetComponent<Fadeing>();
+        audioController = GameObject.FindGameObjectWithTag("T_Sound").GetComponent<AudioController>();
+    }
+
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             hiddenClue4.SetActive(true);
             hiddenClue5.SetActive(true);
+            audioController.playDing();
             print("Challenge1 Done");
             Destroy(hiddenClue2);
+
+            fadeing.fadeText();
         }
         if (Input.GetKeyUp(KeyCode.Delete))
         {
             Destroy(hiddenClue3);
+
         }
     }
 
