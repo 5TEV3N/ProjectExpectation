@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 1;  //We can controll the speed of the player here.
     public Rigidbody rb;
 
-    public int escCounter;
-
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -68,20 +66,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-    }
-
-    public void CloseGame()
-    {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            escCounter++;
-            print(escCounter);
-            if (escCounter > 50)
-            {
-                Application.Quit();
-                print("GameClose");
-            }
-        }
     }
 
     void Update()

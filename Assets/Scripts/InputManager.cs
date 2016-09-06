@@ -29,5 +29,11 @@ public class InputManager : MonoBehaviour
         {
             playerController.PlayerMove(xAxis, zAxis);
         }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Application.Quit();
+            print("GameClose");
+        }
     }
 }

@@ -14,10 +14,4 @@ public class Fadeing : MonoBehaviour
     {
         animator.SetBool("upKeyPressed", true);
     }
-
-    public void fadeDelete()
-    {
-        animator.SetBool("deleteKeyPressed", true);
-    }
-
 }

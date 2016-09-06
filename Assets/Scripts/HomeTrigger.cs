@@ -11,24 +11,37 @@ public class HomeTrigger : MonoBehaviour
     public GameObject hiddenClue3;
     public GameObject hiddenClue4;
     public GameObject hiddenClue5;
-    Collider other;
+
+    public bool challenge1Done = false;
+    public bool challenge2Done = false;
 
     Fadeing fadeing;
+    Fadeing2 fadeing2;
     AudioController audioController;
 
     void Awake()
     {
         fadeing = GameObject.FindGameObjectWithTag("T_Fade").GetComponent<Fadeing>();
+        fadeing2 = GameObject.FindGameObjectWithTag("Finish").GetComponent<Fadeing2>();
+
         audioController = GameObject.FindGameObjectWithTag("T_Sound").GetComponent<AudioController>();
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Delete)) // change : Destroy to fadeing
+        if (challenge1Done == true)
         {
-            fadeing.fadeDelete();
-            Destroy(hiddenClue3);
-            audioController.playDing();
+            if (challenge2Done == false)
+            {
+                if (Input.GetKeyUp(KeyCode.Delete))
+                {
+                    fadeing2.fadeDelete();
+                    Destroy(hiddenClue3);
+                    audioController.playDing();
+
+                    challenge2Done = true;
+                }
+            }
         }
     }
 
@@ -37,16 +50,23 @@ public class HomeTrigger : MonoBehaviour
         title.SetActive(false);
         tut.SetActive(false);
 
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (challenge1Done == false)
         {
-            hiddenClue4.SetActive(true);
-            hiddenClue5.SetActive(true);
+            if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                hiddenClue4.SetActive(true);
+                hiddenClue5.SetActive(true);
 
-            audioController.playDing();
-            fadeing.fadeUp();
+                audioController.playDing();
+                fadeing.fadeUp();
 
-            print("Challenge1 Done");
-            Destroy(hiddenClue2);
+                print("Challenge1 Done");
+                Destroy(hiddenClue2);
+
+                fadeing2.Visible();
+
+                challenge1Done = true;
+            }
         }
 
         hiddenClue1.SetActive(true);
