@@ -7,12 +7,6 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 1;  //We can controll the speed of the player here.
     public Rigidbody rb;
 
-    void Awake()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     public void Mouselook(float mouseXAxis, float mouseYAxis)
     {
         //Filter vertical input

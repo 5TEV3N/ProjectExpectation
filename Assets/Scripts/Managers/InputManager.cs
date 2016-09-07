@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     float zAxis = 0; // 1 = front, -1 back
     float mouseXAxis = 0; // left or right movement of mouse (camera). Positive numb = right, Negative numb = left
     float mouseYAxis = 0; // up or down movement of mouse (camera). Positive numb = up, Negative numb = down.
+    bool cameraLock = true;
 
     void Awake()
     {
@@ -30,10 +31,19 @@ public class InputManager : MonoBehaviour
             playerController.PlayerMove(xAxis, zAxis);
         }
 
-        if (Input.GetKeyUp(KeyCode.Escape))
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
-            print("GameClose");
+            cameraLock = true;
+
+            if (cameraLock == true )
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                cameraLock = false;
+            }
         }
     }
 }
