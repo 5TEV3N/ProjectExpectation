@@ -10,19 +10,23 @@ public class HomeTrigger : MonoBehaviour
     public GameObject hiddenClue2;
     public GameObject hiddenClue3;
     public GameObject hiddenClue4;
-    public GameObject hiddenClue5;
+
+    public GameObject hiddenFloatingClue1;
+    public GameObject hiddenFloatingClue2;
+    public GameObject hiddenFloatingClue3;
+    public GameObject hiddenFloatingClue4;
+    public GameObject hiddenFloatingClue5;
+    public GameObject hiddenFloatingClue6;
 
     public bool challenge1Done = false;
     public bool challenge2Done = false;
 
     Fadeing fadeing;
-    Fadeing2 fadeing2;
     AudioController audioController;
 
     void Awake()
     {
         fadeing = GameObject.FindGameObjectWithTag("T_Fade").GetComponent<Fadeing>();
-        fadeing2 = GameObject.FindGameObjectWithTag("Finish").GetComponent<Fadeing2>();
 
         audioController = GameObject.FindGameObjectWithTag("T_Sound").GetComponent<AudioController>();
     }
@@ -35,7 +39,6 @@ public class HomeTrigger : MonoBehaviour
             {
                 if (Input.GetKeyUp(KeyCode.Delete))
                 {
-                    fadeing2.fadeDelete();
                     Destroy(hiddenClue3);
                     audioController.playDing();
 
@@ -55,7 +58,6 @@ public class HomeTrigger : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
                 hiddenClue4.SetActive(true);
-                hiddenClue5.SetActive(true);
 
                 audioController.playDing();
                 fadeing.fadeUp();
@@ -63,7 +65,7 @@ public class HomeTrigger : MonoBehaviour
                 print("Challenge1 Done");
                 Destroy(hiddenClue2);
 
-                fadeing2.Visible();
+                //fadeing2.Visible(); enable the hidden floating clues here
 
                 challenge1Done = true;
             }
