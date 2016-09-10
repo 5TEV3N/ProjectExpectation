@@ -58,6 +58,12 @@ public class HomeTrigger : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
                 hiddenClue4.SetActive(true);
+                hiddenFloatingClue1.SetActive(true);
+                hiddenFloatingClue2.SetActive(true);
+                hiddenFloatingClue3.SetActive(true);
+                hiddenFloatingClue4.SetActive(true);
+                hiddenFloatingClue5.SetActive(true);
+                hiddenFloatingClue6.SetActive(true);
 
                 audioController.playDing();
                 fadeing.fadeUp();
@@ -65,13 +71,22 @@ public class HomeTrigger : MonoBehaviour
                 print("Challenge1 Done");
                 Destroy(hiddenClue2);
 
-                //fadeing2.Visible(); enable the hidden floating clues here
-
                 challenge1Done = true;
             }
         }
 
         hiddenClue1.SetActive(true);
+
+        if (challenge1Done == true)
+        {
+            hiddenFloatingClue1.SetActive(true);
+            hiddenFloatingClue2.SetActive(true);
+            hiddenFloatingClue3.SetActive(true);
+            hiddenFloatingClue4.SetActive(true);
+            hiddenFloatingClue5.SetActive(true);
+            hiddenFloatingClue6.SetActive(true);
+        }
+
         hiddenClue2.SetActive(true);
         hiddenClue3.SetActive(true);
     }
@@ -79,6 +94,18 @@ public class HomeTrigger : MonoBehaviour
     void OnTriggerExit (Collider other)
     {
         hiddenClue1.SetActive(false);
+
+        if (challenge1Done == true)
+        {
+            print("check");
+            hiddenFloatingClue1.SetActive(false);
+            hiddenFloatingClue2.SetActive(false);
+            hiddenFloatingClue3.SetActive(false);
+            hiddenFloatingClue4.SetActive(false);
+            hiddenFloatingClue5.SetActive(false);
+            hiddenFloatingClue6.SetActive(false);
+        }
+
         hiddenClue2.SetActive(false);
         hiddenClue3.SetActive(false);
         hiddenClue4.SetActive(false);
