@@ -33,6 +33,7 @@ public class HomeTrigger : MonoBehaviour
 
     void Update()
     {
+        /*
         if (challenge1Done == true)
         {
             if (challenge2Done == false)
@@ -46,6 +47,7 @@ public class HomeTrigger : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     void OnTriggerStay(Collider other)
@@ -85,6 +87,17 @@ public class HomeTrigger : MonoBehaviour
             hiddenFloatingClue4.SetActive(true);
             hiddenFloatingClue5.SetActive(true);
             hiddenFloatingClue6.SetActive(true);
+
+            if (challenge2Done == false)
+            {
+                if (Input.GetKeyUp(KeyCode.Delete))
+                {
+                    Destroy(hiddenClue3);
+                    audioController.playDing();
+
+                    challenge2Done = true;
+                }
+            }
         }
 
         hiddenClue2.SetActive(true);
@@ -97,7 +110,6 @@ public class HomeTrigger : MonoBehaviour
 
         if (challenge1Done == true)
         {
-            print("check");
             hiddenFloatingClue1.SetActive(false);
             hiddenFloatingClue2.SetActive(false);
             hiddenFloatingClue3.SetActive(false);
