@@ -7,11 +7,17 @@ public class Fadeing : MonoBehaviour
 
     void Awake()
     {
-        animator = gameObject.GetComponent<Animator>();   
+        animator = GameObject.FindGameObjectWithTag("T_Fade").GetComponent<Animator>();
+        //animator = gameObject.GetComponent<Animator>();   
     }
 
-    public void fadeUp()
+    public void fadeUp1()
     {
         animator.SetBool("upKeyPressed", true);
+    }
+
+    public void fadeUp2()
+    {
+        animator.SetBool("upKeyPressed2", true);
     }
 }

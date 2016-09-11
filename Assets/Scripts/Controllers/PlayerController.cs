@@ -3,32 +3,31 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public float mouseSensitivity = 1;    //mouse sensitivity
-    public float playerSpeed = 1;  //We can controll the speed of the player here.
-    public Rigidbody rb;
+    public float mouseSensitivity = 1;    //Mouse sensitivity
+    public float playerSpeed = 1;   //We can controll the speed of the player here.
+    public Rigidbody rb;    //Access the rigidbody to move
+    public Camera cam;  //Acess the Camera of the gameobject
+    public float upDownRange = 90.0f;   //How far i can look up or down.
+
+    private float verticalRotation = 0;
 
     public void Mouselook(float mouseXAxis, float mouseYAxis)
     {
-        //Filter vertical input
+        //Filter Horizontal input
         if (mouseXAxis != 0)
         {
-            gameObject.transform.Rotate(new Vector3(0, mouseXAxis, 0));
+            gameObject.transform.Rotate(new Vector3(0, mouseXAxis, 0)); //Rotate gameObject left or right
+            
         }
 
-        //Filter horizontal input
+        //Filter Vertical input
         if (mouseYAxis != 0)
         {
-            gameObject.transform.Rotate(new Vector3(-mouseYAxis, 0, 0));
-        }
-
-        if (gameObject.transform.localRotation.z != 0)
-        {
-            //localEulerAngles = Actual angle objet is rotated to in local space
-            Vector3 myVec = gameObject.transform.localEulerAngles;
-            gameObject.transform.localEulerAngles = new Vector3(myVec.x, myVec.y, 0);
-        }
-        
-        }
+            verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;    //Rotates the gameobject up and down.
+            verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);    //Clamp the camera from moving up and down. Argument = float Value, float minimum val, float max minimum val
+            cam.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0); //Idk.
+        } 
+    }
 
     public void PlayerMove(float xAxis, float zAxis)
     {

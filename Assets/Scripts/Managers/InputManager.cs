@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
 
     void Awake()
     {
-        playerController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerController>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
         {
             playerController.PlayerMove(xAxis, zAxis);
         }
-
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
