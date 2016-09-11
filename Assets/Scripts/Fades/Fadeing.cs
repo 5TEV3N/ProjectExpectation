@@ -16,8 +16,5 @@ public class Fadeing : MonoBehaviour
         animator.SetBool("upKeyPressed", true);
     }
 
-    public void fadeUp2()
-    {
-        animator.SetBool("upKeyPressed2", true);
-    }
+
 }

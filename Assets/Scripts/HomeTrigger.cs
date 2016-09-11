@@ -22,11 +22,15 @@ public class HomeTrigger : MonoBehaviour
     public bool challenge2Done = false;
 
     Fadeing fadeing;
+    Fadeing2 fadeing2;
+    Fadeing3 fadeing3;
     AudioController audioController;
 
     void Awake()
     {
         fadeing = GameObject.FindGameObjectWithTag("T_Fade").GetComponent<Fadeing>();
+        fadeing2 = GameObject.FindGameObjectWithTag("T_Fade2").GetComponent<Fadeing2>();
+        fadeing3 = GameObject.FindGameObjectWithTag("T_Fade3").GetComponent<Fadeing3>();
 
         audioController = GameObject.FindGameObjectWithTag("T_Sound").GetComponent<AudioController>();
     }
@@ -52,7 +56,7 @@ public class HomeTrigger : MonoBehaviour
 
                 audioController.playDing();
                 fadeing.fadeUp1();
-                fadeing.fadeUp2();
+                fadeing2.fadeUp2();
 
                 print("Challenge1 Done");
                 hiddenCover1.SetActive(false);
@@ -64,6 +68,7 @@ public class HomeTrigger : MonoBehaviour
 
         if (challenge1Done == true)
         {
+            hiddenTip.SetActive(true);
             hiddenFloatingClue1.SetActive(true);
             hiddenFloatingClue2.SetActive(true);
             hiddenFloatingClue3.SetActive(true);
@@ -75,10 +80,11 @@ public class HomeTrigger : MonoBehaviour
             {
                 if (Input.GetKeyUp(KeyCode.Delete))
                 {
-                    //hiddenCover2.SetActive(false);
-                    hiddenCover2.transform.Translate(0, -100, 0);
                     audioController.playDing();
+                    fadeing3.fadeDelete();
 
+                    print("Challenge2 Done");
+                    hiddenCover2.transform.Translate(0, -100, 0);
                     challenge2Done = true;
                 }
             }
@@ -91,6 +97,7 @@ public class HomeTrigger : MonoBehaviour
 
         if (challenge1Done == true)
         {
+            hiddenTip.SetActive(false);
             hiddenFloatingClue1.SetActive(false);
             hiddenFloatingClue2.SetActive(false);
             hiddenFloatingClue3.SetActive(false);
