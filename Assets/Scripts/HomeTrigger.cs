@@ -44,7 +44,7 @@ public class HomeTrigger : MonoBehaviour
         if (challenge1Done == false)
         {
             hiddenCover1.SetActive(true);
-            if (Input.GetKeyUp(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 hiddenTip.SetActive(true);
                 hiddenFloatingClue1.SetActive(true);    //D
@@ -78,7 +78,7 @@ public class HomeTrigger : MonoBehaviour
 
             if (challenge2Done == false)
             {
-                if (Input.GetKeyUp(KeyCode.Delete))
+                if (Input.GetKeyDown(KeyCode.Delete)|| Input.GetKeyDown(KeyCode.Backspace))
                 {
                     audioController.playDing();
                     fadeing3.fadeDelete();
