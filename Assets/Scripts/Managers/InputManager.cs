@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         mouseXAxis = Input.GetAxis("Mouse X");
         mouseYAxis = Input.GetAxis("Mouse Y");
