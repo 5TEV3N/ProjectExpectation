@@ -3,8 +3,11 @@ using System.Collections;
 
 public class HomeTrigger : MonoBehaviour
 {
-    public GameObject title;
-    public GameObject tut;
+    public GameObject titleAlphabet;
+    public GameObject titleCode;
+
+    public GameObject tut1;
+    public GameObject tut2;
 
     public GameObject hiddenGoal1;  //Goal
     public GameObject hiddenCover1;  //Cover1
@@ -37,8 +40,8 @@ public class HomeTrigger : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        title.SetActive(false);
-        tut.SetActive(false);
+        tut1.SetActive(false);
+        tut2.SetActive(false);
         hiddenGoal1.SetActive(true);
 
         if (challenge1Done == false)
@@ -68,6 +71,8 @@ public class HomeTrigger : MonoBehaviour
 
         if (challenge1Done == true)
         {
+            titleAlphabet.SetActive(false);
+            titleCode.SetActive(false);
             hiddenTip.SetActive(true);
             hiddenFloatingClue1.SetActive(true);
             hiddenFloatingClue2.SetActive(true);
